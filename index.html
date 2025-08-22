@@ -4,8 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+  <img id="minhaImagem" src="personagem.png" alt="Imagem Controlável">
+  <script>
+    const img = document.getElementById('minhaImagem');
+
+// Limites da "zona de caminhada"
+const limite = {
+    xMin: 50,  // distância mínima da borda esquerda
+    xMax: window.innerWidth - img.offsetWidth - 50, // distância da borda direita
+    yMin: 400,  // distância mínima do topo
+    yMax: window.innerHeight - img.offsetHeight - 100 // distância da borda inferior
+};
+
+// Posição inicial dentro da zona
+let posX = limite.xMax;
+let posY = limite.yMax;
+
+img.style.left = posX + 'px';
+img.style.top = posY + 'px';
+
+const step = 10;
+
+function moverImagem(e) {
+    switch(e.key) {
+        case 'ArrowUp':
+            posY = Math.max(limite.yMin, posY - step);
+            break;
+        case 'ArrowDown':
+            posY = Math.min(limite.yMax, posY + step);
+            break;
+        case 'ArrowLeft':
+            posX = Math.max(limite.xMin, posX - step);
+            break;
+        case 'ArrowRight':
+            posX = Math.min(limite.xMax, posX + step);
+            break;
+    }
+    img.style.left = posX + 'px';
+    img.style.top = posY + 'px';
+}
+
+window.addEventListener('keydown', moverImagem);
+
+// Atualiza limites se a janela for redimensionada
+window.addEventListener('resize', () => {
+    limite.xMax = window.innerWidth - img.offsetWidth - 100;
+    limite.yMax = window.innerHeight - img.offsetHeight - 100;
+
+    posX = Math.min(posX, limite.xMax);
+    posY = Math.min(posY, limite.yMax);
+
+    img.style.left = posX + 'px';
+    img.style.top = posY + 'px';
+});
+  </script>
 </body>
 </html>
