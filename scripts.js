@@ -1,5 +1,4 @@
-    const img = document.getElementById('minhaImagem');
-
+const img = document.getElementById('minhaImagem');
 
 const limite = {
     xMin: 50, 
@@ -7,7 +6,6 @@ const limite = {
     yMin: 400,
     yMax: window.innerHeight - img.offsetHeight - 100
 };
-
 
 let posX = limite.xMax;
 let posY = limite.yMax;
@@ -39,7 +37,7 @@ function moverImagem(e) {
 window.addEventListener('keydown', moverImagem);
 
 window.addEventListener('resize', () => {
-    limite.xMax = window.innerWidth - img.offsetWidth - 100;
+    limite.xMax = window.innerWidth - img.offsetWidth - 50;
     limite.yMax = window.innerHeight - img.offsetHeight - 100;
 
     posX = Math.min(posX, limite.xMax);

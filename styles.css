@@ -17,7 +17,5 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    bottom: 0; /* inicia no canto inferior direito */
-    right: 0;
     cursor: pointer;
   }
